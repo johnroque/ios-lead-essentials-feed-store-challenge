@@ -37,6 +37,10 @@ public final class CoreDataFeedStore: FeedStore {
 		
 		context.perform {
 			do {
+				if let oldFeed = try CDFeed.find(in: context) {
+					context.delete(oldFeed)
+				}
+				
 				let newFeed = CDFeed(context: context)
 				newFeed.timestamp = timestamp
 				newFeed.feedImage = CDFeedImage.toCD(images: feed, in: context)

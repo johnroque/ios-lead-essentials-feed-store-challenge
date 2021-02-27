@@ -29,9 +29,7 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 	
 	public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-		let context = self.context
-		
-		context.perform {
+		perform { (context) in
 			do {
 				try CDFeed.delete(in: context)
 				completion(nil)
@@ -42,19 +40,11 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 	
 	public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-		let context = self.context
-		
-		context.perform {
+		perform { (context) in
 			do {
-				if let oldFeed = try CDFeed.find(in: context) {
-					context.delete(oldFeed)
-				}
-				
-				let newFeed = CDFeed(context: context)
-				newFeed.timestamp = timestamp
-				newFeed.feedImage = CDFeedImage.toCD(images: feed, in: context)
-				try context.save()
-				
+				try CDFeed.insertNew(in: context,
+								 feed: feed,
+								 timestamp: timestamp)
 				completion(nil)
 			} catch {
 				completion(error)
@@ -63,9 +53,7 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 	
 	public func retrieve(completion: @escaping RetrievalCompletion) {
-		let context = self.context
-		
-		context.perform {
+		perform { (context) in
 			do {
 				if let feed = try CDFeed.find(in: context) {
 					completion(.found(feed: feed.localFeedImage, timestamp: feed.timestamp))
@@ -75,6 +63,15 @@ public final class CoreDataFeedStore: FeedStore {
 			} catch {
 				completion(.failure(error))
 			}
+		}
+	}
+	
+	// MARK: - Helper
+	private func perform(_ block: @escaping (NSManagedObjectContext) -> Void) {
+		let context = self.context
+		
+		context.perform {
+			block(context)
 		}
 	}
 }
@@ -89,6 +86,17 @@ private class CDFeed: NSManagedObject {
 	
 	internal var localFeedImage: [LocalFeedImage] {
 		feedImage.compactMap { ($0 as? CDFeedImage)?.localImage }
+	}
+	
+	static internal func insertNew(in context: NSManagedObjectContext, feed: [LocalFeedImage], timestamp: Date) throws {
+		if let oldFeed = try CDFeed.find(in: context) {
+			context.delete(oldFeed)
+		}
+		
+		let newFeed = CDFeed(context: context)
+		newFeed.timestamp = timestamp
+		newFeed.feedImage = CDFeedImage.toCD(images: feed, in: context)
+		try context.save()
 	}
 	
 	static internal func find(in context: NSManagedObjectContext) throws -> CDFeed? {

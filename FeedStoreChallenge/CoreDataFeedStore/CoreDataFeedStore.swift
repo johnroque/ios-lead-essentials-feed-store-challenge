@@ -33,7 +33,7 @@ public final class CoreDataFeedStore: FeedStore {
 		
 		context.perform {
 			do {
-				try CDFeed.find(in: context).map(context.delete).map(context.save)
+				try CDFeed.delete(in: context)
 				completion(nil)
 			} catch {
 				completion(error)
@@ -94,6 +94,10 @@ private class CDFeed: NSManagedObject {
 	static internal func find(in context: NSManagedObjectContext) throws -> CDFeed? {
 		let request: NSFetchRequest<CDFeed> = fetchRequest()
 		return try context.fetch(request).first
+	}
+	
+	static internal func delete(in context: NSManagedObjectContext) throws {
+		try find(in: context).map(context.delete).map(context.save)
 	}
 	
 	static internal func fetchRequest() -> NSFetchRequest<CDFeed> {

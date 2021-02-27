@@ -94,19 +94,10 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	// - MARK: Helpers
 	
 	private func makeSUT(file: StaticString = #filePath, line: UInt = #line) throws -> FeedStore {
-		let storeURL = testSpecificStoreUrl()
+		let storeURL = URL(fileURLWithPath: "/dev/null")
 		let bundle = Bundle(for: CoreDataFeedStore.self)
-		let sut = try CoreDataFeedStore(storeURL: storeURL, in: bundle, of: .inMemory)
+		let sut = try CoreDataFeedStore(storeURL: storeURL, in: bundle)
 		trackForMemoryLeaks(sut, file: file, line: line)
 		return sut
 	}
-	
-	private func testSpecificStoreUrl() -> URL {
-		return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
-	}
-	
-	private func cachesDirectory() -> URL {
-		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-	}
-	
 }

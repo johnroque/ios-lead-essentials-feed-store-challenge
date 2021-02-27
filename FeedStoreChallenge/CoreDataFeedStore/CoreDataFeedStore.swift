@@ -9,22 +9,16 @@
 import Foundation
 import CoreData
 
-public enum CoreDataStoreType {
-	case disk
-	case inMemory
-}
-
 public final class CoreDataFeedStore: FeedStore {
 	public static let MODEL_NAME = "FeedStore"
 	
 	private let container: NSPersistentContainer
 	private let context: NSManagedObjectContext
 	
-	public init(storeURL: URL, in bundle: Bundle, of type: CoreDataStoreType = .disk) throws {
+	public init(storeURL: URL, in bundle: Bundle) throws {
 		self.container = try NSPersistentContainer.load(modelName: CoreDataFeedStore.MODEL_NAME,
 														storeURL: storeURL,
-														in: bundle,
-														of: type)
+														in: bundle)
 		self.context = self.container.newBackgroundContext()
 	}
 	

@@ -19,6 +19,7 @@
 		08CE2BB32285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CE2BAE2285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift */; };
 		08CE2BB52285BEF100183A1B /* FeedStoreChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */; };
 		4A9E70F225EA55CD00379654 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E70F125EA55CD00379654 /* CoreDataFeedStore.swift */; };
+		4A9E70FC25EA618B00379654 /* NSPersistentContainer+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E70FB25EA618B00379654 /* NSPersistentContainer+load.swift */; };
 		4A9E710725EA6A9100379654 /* FeedStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E710525EA6A9100379654 /* FeedStore.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		08CE2BAE2285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertFeedStoreSpecs.swift"; sourceTree = "<group>"; };
 		08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreChallengeTests.swift; sourceTree = "<group>"; };
 		4A9E70F125EA55CD00379654 /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
+		4A9E70FB25EA618B00379654 /* NSPersistentContainer+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+load.swift"; sourceTree = "<group>"; };
 		4A9E710625EA6A9100379654 /* FeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,10 +129,19 @@
 		4A9E70F025EA55B800379654 /* CoreDataFeedStore */ = {
 			isa = PBXGroup;
 			children = (
+				4A9E70FA25EA615100379654 /* Helper */,
 				4A9E70F125EA55CD00379654 /* CoreDataFeedStore.swift */,
 				4A9E710525EA6A9100379654 /* FeedStore.xcdatamodeld */,
 			);
 			path = CoreDataFeedStore;
+			sourceTree = "<group>";
+		};
+		4A9E70FA25EA615100379654 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4A9E70FB25EA618B00379654 /* NSPersistentContainer+load.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A9E70FC25EA618B00379654 /* NSPersistentContainer+load.swift in Sources */,
 				4A9E710725EA6A9100379654 /* FeedStore.xcdatamodeld in Sources */,
 				4A9E70F225EA55CD00379654 /* CoreDataFeedStore.swift in Sources */,
 				08CE2BA62285BCB600183A1B /* FeedStore.swift in Sources */,

@@ -9,13 +9,19 @@
 import CoreData
 
 internal extension NSPersistentContainer {
-	static func load(modelName: String, storeURL: URL, in bundle: Bundle) throws -> NSPersistentContainer {
+	static func load(modelName: String, storeURL: URL, in bundle: Bundle, of type: CoreDataStoreType) throws -> NSPersistentContainer {
 		guard let modelURL = bundle.url(forResource: modelName, withExtension: "momd"),
 			  let model = NSManagedObjectModel(contentsOf: modelURL) else {
 			throw LoadError.invalidModel
 		}
 		
 		let description = NSPersistentStoreDescription(url: storeURL)
+		switch type {
+		case .inMemory:
+			description.type = NSInMemoryStoreType
+		default: break
+		}
+		
 		let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
 		container.persistentStoreDescriptions = [description]
 		var loadError: Swift.Error?

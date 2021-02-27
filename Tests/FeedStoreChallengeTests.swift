@@ -94,7 +94,18 @@ class FeedStoreChallengeTests: XCTestCase, FeedStoreSpecs {
 	// - MARK: Helpers
 	
 	private func makeSUT() throws -> FeedStore {
-		CoreDataFeedStore()
+		let storeURL = testSpecificStoreUrl()
+		let bundle = Bundle(for: CoreDataFeedStore.self)
+		let sut = try CoreDataFeedStore(storeURL: storeURL, in: bundle, of: .inMemory)
+		return sut
+	}
+	
+	private func testSpecificStoreUrl() -> URL {
+		return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
+	}
+	
+	private func cachesDirectory() -> URL {
+		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
 	}
 	
 }

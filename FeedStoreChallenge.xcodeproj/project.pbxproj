@@ -21,6 +21,7 @@
 		4A9E70F225EA55CD00379654 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E70F125EA55CD00379654 /* CoreDataFeedStore.swift */; };
 		4A9E70FC25EA618B00379654 /* NSPersistentContainer+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E70FB25EA618B00379654 /* NSPersistentContainer+load.swift */; };
 		4A9E710725EA6A9100379654 /* FeedStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E710525EA6A9100379654 /* FeedStore.xcdatamodeld */; };
+		4A9E710C25EA7AF300379654 /* XCTestCase+MemoryLeakTrackingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E710B25EA7AF300379654 /* XCTestCase+MemoryLeakTrackingHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		4A9E70F125EA55CD00379654 /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 		4A9E70FB25EA618B00379654 /* NSPersistentContainer+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentContainer+load.swift"; sourceTree = "<group>"; };
 		4A9E710625EA6A9100379654 /* FeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore.xcdatamodel; sourceTree = "<group>"; };
+		4A9E710B25EA7AF300379654 /* XCTestCase+MemoryLeakTrackingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTrackingHelper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		08CE2B982285BBD100183A1B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4A9E710A25EA7AD100379654 /* Helper */,
 				08CE2BA92285BCE700183A1B /* FeedStoreSpecs */,
 				08CE2BB42285BEF100183A1B /* FeedStoreChallengeTests.swift */,
 				084BB13B24FE50A10091C705 /* FeedStoreIntegrationTests.swift */,
@@ -140,6 +143,14 @@
 			isa = PBXGroup;
 			children = (
 				4A9E70FB25EA618B00379654 /* NSPersistentContainer+load.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		4A9E710A25EA7AD100379654 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4A9E710B25EA7AF300379654 /* XCTestCase+MemoryLeakTrackingHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -273,6 +284,7 @@
 				08CE2BAF2285BCE700183A1B /* XCTestCase+FeedStoreSpecs.swift in Sources */,
 				08CE2BB32285BCE700183A1B /* XCTestCase+FailableInsertFeedStoreSpecs.swift in Sources */,
 				084BB13E24FE56830091C705 /* XCTestCase+FeedStoreHelpers.swift in Sources */,
+				4A9E710C25EA7AF300379654 /* XCTestCase+MemoryLeakTrackingHelper.swift in Sources */,
 				08CE2BB52285BEF100183A1B /* FeedStoreChallengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
